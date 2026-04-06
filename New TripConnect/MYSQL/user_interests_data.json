@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1769450051671,
+    "userId": "user_1769449199962_xnkguobzp",
+    "interests": [
+      "food",
+      "spiritual",
+      "adventure",
+      "wildlife",
+      "culture"
+    ],
+    "companionType": "buddy",
+    "timestamp": "2026-01-26T17:54:11.671Z",
+    "savedAt": "26/1/2026, 11:24:11 pm"
+  },
+  {
+    "id": 1769450064728,
+    "userId": "user_1769449199962_xnkguobzp",
+    "interests": [
+      "wildlife",
+      "wellness",
+      "shopping",
+      "music",
+      "adventure"
+    ],
+    "companionType": "self-group",
+    "timestamp": "2026-01-26T17:54:24.728Z",
+    "savedAt": "26/1/2026, 11:24:24 pm"
+  },
+  {
+    "id": 1769450423211,
+    "userId": "user_1769449199962_xnkguobzp",
+    "interests": [
+      "wellness",
+      "music",
+      "adventure",
+      "mountain",
+      "wildlife"
+    ],
+    "companionType": "self-group",
+    "timestamp": "2026-01-26T18:00:23.211Z",
+    "savedAt": "26/1/2026, 11:30:23 pm"
+  }
+]

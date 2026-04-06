@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TripConnect Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div>
+      <div class="logo">Trip<span>Connect</span></div>
+      <div class="admin-tag">Admin dashboard</div>
+    </div>
+    <div>
+      <div class="nav-section-title">Sections</div>
+      <ul class="nav-list">
+        <li><a href="#manage-users" class="nav-link active"><span class="icon">👤</span>Manage users</a></li>
+        <li><a href="#manage-packages" class="nav-link"><span class="icon">🎒</span>Manage packages</a></li>
+        <li><a href="#trip-manage" class="nav-link"><span class="icon">🗺️</span>Trip management</a></li>
+        <li><a href="#booking-approval" class="nav-link"><span class="icon">✅</span>AI Group approvals</a></li>
+        <li><a href="#payments" class="nav-link"><span class="icon">💳</span>Payments</a></li>
+        <li><a href="#notifications" class="nav-link"><span class="icon">🔔</span>Notifications</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-footer">
+      Logged in as: <strong>admin@tripconnect.in</strong>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <div class="topbar-title">TripConnect control centre</div>
+        <div class="topbar-sub">Complete overview for users, packages, trips, AI group approvals, payments and notifications.</div>
+      </div>
+      <div class="admin-pill">
+        <span class="status-dot"></span>
+        Admin online
+      </div>
+    </div>
+
+    <!-- METRICS -->
+    <div class="metric-row">
+      <div class="metric-card">
+        <div class="metric-label">Total users</div>
+        <div class="metric-value" id="metricUsers">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Active trips</div>
+        <div class="metric-value" id="metricTrips">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Today's revenue (₹)</div>
+        <div class="metric-value" id="metricRevenue">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Unread notifications</div>
+        <div class="metric-value" id="metricNotifications">0</div>
+      </div>
+    </div>
+
+    <!-- 1. MANAGE USERS -->
+    <section id="manage-users">
+      <div class="card">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Manage users</div>
+            <div class="section-desc">View, edit and manage user accounts.</div>
+          </div>
+          <div class="section-actions">
+            <span class="badge-pill">Users</span>
+            <button class="btn" onclick="refreshUsers()">⟳ Refresh</button>
+          </div>
+        </div>
+        <div class="counter-row">
+          <span class="chip">Total: <strong id="totalUsers">0</strong></span>
+          <span class="chip">Active: <strong id="activeUsers">0</strong></span>
+          <span class="chip">Suspended: <strong id="suspendedUsers">0</strong></span>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Joined</th>
+                <th style="width:280px">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody">
+              <tr class="placeholder-row">
+                <td colspan="6">No users available</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. MANAGE PACKAGES -->
+    <section id="manage-packages">
+      <div class="card">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Manage packages</div>
+            <div class="section-desc">Add new packages and manage existing tour packages.</div>
+          </div>
+          <div class="section-actions">
+            <span class="badge-pill">Packages</span>
+            <button class="btn btn-primary" onclick="openAddPackageModal()">+ Add package</button>
+            <button class="btn" onclick="refreshPackages()">⟳ Refresh</button>
+          </div>
+        </div>
+        <div class="counter-row">
+          <span class="chip">Total: <strong id="totalPackages">0</strong></span>
+          <span class="chip">Active: <strong id="activePackages">0</strong></span>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Destination</th>
+                <th>Duration</th>
+                <th>Price (₹)</th>
+                <th style="width:260px">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="packageTableBody">
+              <tr class="placeholder-row">
+                <td colspan="6">No packages available</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TRIP MANAGEMENT -->
+    <section id="trip-manage">
+      <div class="card">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Trip management</div>
+            <div class="section-desc">Monitor active, upcoming and completed trips.</div>
+          </div>
+          <div class="section-actions">
+            <span class="badge-pill">Trips</span>
+          </div>
+        </div>
+        <div class="counter-row">
+          <span class="chip">Active: <strong id="activeTrips">0</strong></span>
+          <span class="chip">Upcoming: <strong id="upcomingTrips">0</strong></span>
+          <span class="chip">Completed: <strong id="completedTrips">0</strong></span>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Group</th>
+                <th>Destination</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tripTableBody">
+              <tr class="placeholder-row">
+                <td colspan="6">No trips found</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. AI GROUP APPROVALS -->
+    <section id="booking-approval">
+      <div class="card">
+        <div class="section-header">
+          <div>
+            <div class="section-title">AI Group approvals</div>
+            <div class="section-desc">Review and approve groups formed by AI matching algorithm.</div>
+          </div>
+          <div class="section-actions">
+            <span class="badge-pill">AI Groups</span>
+            <button class="btn" onclick="refreshAIGroups()">⟳ Refresh</button>
+          </div>
+        </div>
+        <div class="counter-row">
+          <span class="chip">Pending: <strong id="pendingApprovals">0</strong></span>
+          <span class="chip">Min size: <strong id="minGroupSize">4</strong></span>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Group ID</th>
+                <th>Name</th>
+                <th>Members</th>
+                <th>Destination</th>
+                <th>Start Date</th>
+                <th>Status</th>
+                <th style="width:220px">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="approvalTableBody">
+              <tr class="placeholder-row">
+                <td colspan="7">No AI groups pending approval</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PAYMENTS -->
+    <section id="payments">
+      <div class="card">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Payments</div>
+            <div class="section-desc">Track confirmed, pending and cancelled payments.</div>
+          </div>
+          <div class="section-actions">
+            <span class="badge-pill">Payments</span>
+            <button class="btn" onclick="refreshPayments()">⟳ Fetch</button>
+          </div>
+        </div>
+        <div class="counter-row">
+          <span class="chip">Confirmed: <strong id="confirmedPayments">0</strong></span>
+          <span class="chip">Pending: <strong id="pendingPayments">0</strong></span>
+          <span class="chip">Cancelled: <strong id="cancelledPayments">0</strong></span>
+          <span class="chip">Total collected (₹): <strong id="totalCollected">0</strong></span>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Payment ID</th>
+                <th>User</th>
+                <th>Trip / Package</th>
+                <th>Amount (₹)</th>
+                <th>Status</th>
+                <th>Mode</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="paymentTableBody">
+              <tr class="placeholder-row">
+                <td colspan="7">No payments recorded yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. NOTIFICATIONS -->
+    <section id="notifications">
+      <div class="card">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Notifications</div>
+            <div class="section-desc">Shows complaints, cancellations, payment confirmations and enquiries.</div>
+          </div>
+          <div class="section-actions">
+            <span class="badge-pill">Notifications</span>
+            <button class="btn" onclick="markAllNotificationsRead()">Mark all read</button>
+          </div>
+        </div>
+        <div class="counter-row">
+          <span class="chip">Unread: <strong id="unreadNotifications">0</strong></span>
+          <span class="chip">Categories: complaints · cancellations · payments · enquiries</span>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Type</th>
+                <th>Message</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="notificationTableBody">
+              <tr class="placeholder-row">
+                <td colspan="4">No notifications yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ADD PACKAGE MODAL -->
+  <div id="addPackageModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Add New Package</div>
+        <span class="modal-close" onclick="closeAddPackageModal()">&times;</span>
+      </div>
+      <form id="addPackageForm">
+        <div class="form-group">
+          <label>Package Title</label>
+          <input type="text" name="title" placeholder="e.g. Rajasthan Golden Triangle" required>
+        </div>
+        <div class="form-group">
+          <label>Destination</label>
+          <input type="text" name="destination" placeholder="e.g. Jaipur, Delhi, Agra" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Duration</label>
+            <input type="text" name="duration" placeholder="7D/6N">
+          </div>
+          <div class="form-group">
+            <label>Base Price (₹)</label>
+            <input type="number" name="price" min="0" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea name="description" rows="3" placeholder="Package details..."></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn" onclick="closeAddPackageModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Package</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- EDIT USER MODAL -->
+  <div id="editUserModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Edit User</div>
+        <span class="modal-close" onclick="closeEditUserModal()">&times;</span>
+      </div>
+      <form id="editUserForm">
+        <input type="hidden" name="id" id="editUserId">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" name="name" id="editUserName" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" id="editUserEmail" required>
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" name="phone" id="editUserPhone">
+        </div>
+        <div class="form-group">
+          <label>Account Status</label>
+          <select name="status" id="editUserStatus">
+            <option value="active">Active</option>
+            <option value="suspended">Suspended</option>
+            <option value="pending">Pending</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn" onclick="closeEditUserModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- VIEW USER MODAL -->
+  <div id="viewUserModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">User Details</div>
+        <span class="modal-close" onclick="closeViewUserModal()">&times;</span>
+      </div>
+      <div id="userDetails">
+        <!-- User details will be populated here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT PACKAGE MODAL -->
+  <div id="editPackageModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Edit Package</div>
+        <span class="modal-close" onclick="closeEditPackageModal()">&times;</span>
+      </div>
+      <form id="editPackageForm">
+        <input type="hidden" name="id" id="editPackageId">
+        <div class="form-group">
+          <label>Package Title</label>
+          <input type="text" name="title" id="editPackageTitle" required>
+        </div>
+        <div class="form-group">
+          <label>Destination</label>
+          <input type="text" name="destination" id="editPackageDestination" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Duration</label>
+            <input type="text" name="duration" id="editPackageDuration" placeholder="7D/6N">
+          </div>
+          <div class="form-group">
+            <label>Base Price (₹)</label>
+            <input type="number" name="price" id="editPackagePrice" min="0" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select name="status" id="editPackageStatus">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea name="description" id="editPackageDescription" rows="3"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn" onclick="closeEditPackageModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update Package</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- VIEW AI GROUP MODAL -->
+  <div id="viewAIGroupModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">AI Group Details</div>
+        <span class="modal-close" onclick="closeViewAIGroupModal()">&times;</span>
+      </div>
+      <div id="aiGroupDetails">
+        <!-- AI Group details will be populated here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

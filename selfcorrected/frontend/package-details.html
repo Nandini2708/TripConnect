@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TripConnect - Package Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="destinationcss.css" />
+  <style>
+    /* Additional styles for package details page */
+    .details-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .details-back-btn {
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.3s;
+    }
+    
+    .details-back-btn:hover {
+      background: white;
+      transform: translateX(-3px);
+    }
+    
+    .package-details-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .package-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      position: relative;
+    }
+    
+    .package-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .package-destination {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .package-price-badge {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: white;
+      color: #333;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .package-meta {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+    
+    .meta-icon {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .package-content {
+      padding: 40px;
+    }
+    
+    .section {
+      margin-bottom: 40px;
+    }
+    
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #333;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #667eea;
+    }
+    
+    .itinerary-container {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 30px;
+      margin-top: 20px;
+    }
+    
+    .day-card {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-left: 5px solid #667eea;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .day-card:last-child {
+      margin-bottom: 0;
+    }
+    
+    .day-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .day-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .day-theme {
+      background: #667eea;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    
+    .day-content {
+      line-height: 1.8;
+      color: #555;
+      font-size: 15px;
+    }
+    
+    .day-highlights {
+      margin-top: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 3px solid #4CAF50;
+    }
+    
+    .highlight-title {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .highlight-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .highlight-list li {
+      padding: 8px 0;
+      padding-left: 25px;
+      position: relative;
+      color: #666;
+    }
+    
+    .highlight-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+    
+    .details-text {
+      line-height: 1.8;
+      color: #555;
+      font-size: 16px;
+      white-space: pre-line;
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+    
+    .inclusion-section {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      margin-top: 20px;
+      border: 2px solid #e0e0e0;
+    }
+    
+    .inclusion-category {
+      margin-bottom: 25px;
+    }
+    
+    .inclusion-category:last-child {
+      margin-bottom: 0;
+    }
+    
+    .category-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .inclusion-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    
+    .inclusion-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    
+    .inclusion-item.negative {
+      background: #fff5f5;
+    }
+    
+    .inclusion-icon {
+      color: #4CAF50;
+      font-weight: bold;
+      font-size: 18px;
+      min-width: 24px;
+    }
+    
+    .inclusion-icon.negative {
+      color: #f44336;
+    }
+    
+    .inclusion-text {
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    .loading-spinner {
+      text-align: center;
+      padding: 100px;
+    }
+    
+    .error-message {
+      text-align: center;
+      padding: 100px;
+      color: #dc3545;
+    }
+    
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .info-card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      border-left: 4px solid #667eea;
+    }
+    
+    .info-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .info-content {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    @media (max-width: 768px) {
+      .package-header {
+        padding: 20px;
+      }
+      
+      .package-title {
+        font-size: 24px;
+      }
+      
+      .package-price-badge {
+        position: relative;
+        top: 0;
+        right: 0;
+        display: inline-block;
+        margin-top: 10px;
+      }
+      
+      .package-content {
+        padding: 20px;
+      }
+      
+      .inclusion-list {
+        grid-template-columns: 1fr;
+      }
+      
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="logo">TripConnect<span></span></div>
+      <div class="tagline">Trusted India travel planner</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="details-container" id="detailsContainer">
+      <!-- Content will be dynamically loaded -->
+      <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+        <p>Loading package itinerary...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 TripConnect India. All rights reserved.
+  </footer>
+
+  <script src="package-details.js"></script>
+</body>
+</html>

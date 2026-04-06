@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1769450787008,
+    "userId": "user_1769449199962_xnkguobzp",
+    "interests": [
+      "music",
+      "shopping",
+      "adventure",
+      "wildlife",
+      "wellness"
+    ],
+    "companionType": "self-group",
+    "timestamp": "2026-01-26T18:06:27.008Z",
+    "savedTo": "file"
+  },
+  {
+    "id": 1769450787024,
+    "userId": "user_1769450786997_whcx1h1dy",
+    "interests": [
+      "music",
+      "shopping",
+      "adventure",
+      "wildlife",
+      "wellness"
+    ],
+    "companionType": "self-group",
+    "timestamp": "2026-01-26T18:06:27.024Z",
+    "savedTo": "file"
+  },
+  {
+    "id": 1769450819411,
+    "userId": "user_1769449199962_xnkguobzp",
+    "interests": [
+      "wildlife",
+      "wellness",
+      "music",
+      "shopping",
+      "adventure"
+    ],
+    "companionType": "self-group",
+    "timestamp": "2026-01-26T18:06:59.411Z",
+    "savedTo": "file"
+  },
+  {
+    "id": 1769450819433,
+    "userId": "user_1769450819399_dhfo5ykyg",
+    "interests": [
+      "wildlife",
+      "wellness",
+      "music",
+      "shopping",
+      "adventure"
+    ],
+    "companionType": "self-group",
+    "timestamp": "2026-01-26T18:06:59.433Z",
+    "savedTo": "file"
+  },
+  {
+    "id": 1769450886952,
+    "userId": "user_1769449199962_xnkguobzp",
+    "interests": [
+      "wellness",
+      "music",
+      "shopping",
+      "adventure",
+      "mountain"
+    ],
+    "companionType": "self-group",
+    "timestamp": "2026-01-26T18:08:06.952Z",
+    "savedTo": "file"
+  },
+  {
+    "id": 1769450886978,
+    "userId": "user_1769450886926_b8mk94g0k",
+    "interests": [
+      "wellness",
+      "music",
+      "shopping",
+      "adventure",
+      "mountain"
+    ],
+    "companionType": "self-group",
+    "timestamp": "2026-01-26T18:08:06.978Z",
+    "savedTo": "file"
+  },
+  {
+    "id": 1769450993023,
+    "userId": "user_1769449199962_xnkguobzp",
+    "interests": [
+      "food",
+      "spiritual",
+      "festivals",
+      "music",
+      "shopping"
+    ],
+    "companionType": "self-group",
+    "timestamp": "2026-01-26T18:09:53.023Z",
+    "savedTo": "file"
+  },
+  {
+    "id": 1769450993047,
+    "userId": "user_1769450993006_kypgphlr7",
+    "interests": [
+      "food",
+      "spiritual",
+      "festivals",
+      "music",
+      "shopping"
+    ],
+    "companionType": "self-group",
+    "timestamp": "2026-01-26T18:09:53.047Z",
+    "savedTo": "file"
+  },
+  {
+    "id": 1769451054467,
+    "userId": "user_1769449199962_xnkguobzp",
+    "interests": [
+      "beach",
+      "food",
+      "spiritual",
+      "festivals",
+      "music"
+    ],
+    "companionType": "buddy",
+    "timestamp": "2026-01-26T18:10:54.467Z",
+    "savedTo": "file"
+  },
+  {
+    "id": 1769451054478,
+    "userId": "user_1769451054451_7cesdg1yh",
+    "interests": [
+      "beach",
+      "food",
+      "spiritual",
+      "festivals",
+      "music"
+    ],
+    "companionType": "buddy",
+    "timestamp": "2026-01-26T18:10:54.478Z",
+    "savedTo": "file"
+  },
+  {
+    "id": 1769451118910,
+    "userId": "user_1769449199962_xnkguobzp",
+    "interests": [
+      "beach",
+      "food",
+      "spiritual",
+      "music",
+      "shopping"
+    ],
+    "companionType": "self-group",
+    "timestamp": "2026-01-26T18:11:58.910Z",
+    "savedTo": "file"
+  },
+  {
+    "id": 1769451118922,
+    "userId": "user_1769451118901_861wrov7y",
+    "interests": [
+      "beach",
+      "food",
+      "spiritual",
+      "music",
+      "shopping"
+    ],
+    "companionType": "self-group",
+    "timestamp": "2026-01-26T18:11:58.922Z",
+    "savedTo": "file"
+  }
+]

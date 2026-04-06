@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1769447792549,
+    "userId": "user_1769447792506",
+    "interests": [
+      "beach",
+      "spiritual",
+      "culture",
+      "shopping",
+      "food"
+    ],
+    "companionType": "self",
+    "timestamp": "2026-01-26T17:16:32.549Z"
+  },
+  {
+    "id": 1769447801927,
+    "userId": "user_1769447801920",
+    "interests": [
+      "beach",
+      "wildlife",
+      "mountain",
+      "spiritual",
+      "shopping"
+    ],
+    "companionType": "buddy",
+    "timestamp": "2026-01-26T17:16:41.927Z"
+  },
+  {
+    "id": 1769447882003,
+    "userId": "user_1769447881996",
+    "interests": [
+      "beach",
+      "wildlife",
+      "spiritual",
+      "mountain",
+      "culture"
+    ],
+    "companionType": "self",
+    "timestamp": "2026-01-26T17:18:02.003Z"
+  },
+  {
+    "id": 1769448395065,
+    "userId": "user_1769448395058",
+    "interests": [
+      "beach",
+      "wildlife",
+      "spiritual",
+      "mountain",
+      "culture"
+    ],
+    "companionType": "self",
+    "timestamp": "2026-01-26T17:26:35.065Z"
+  }
+]

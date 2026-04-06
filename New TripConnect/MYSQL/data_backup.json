@@ -1,0 +1,106 @@
+[
+  {
+    "userId": "user_1769445378712_k8oc8b5c7",
+    "interests": [
+      "beach",
+      "food",
+      "spiritual",
+      "shopping",
+      "mountain"
+    ],
+    "companionType": "buddy",
+    "backup_id": 1769445378730,
+    "saved_at": "2026-01-26T16:36:18.730Z"
+  },
+  {
+    "userId": "user_1769445415145_4r4gsbuha",
+    "interests": [
+      "adventure",
+      "mountain",
+      "culture",
+      "wildlife",
+      "wellness"
+    ],
+    "companionType": "self-group",
+    "backup_id": 1769445415156,
+    "saved_at": "2026-01-26T16:36:55.156Z"
+  },
+  {
+    "userId": "user_1769445449576_92ulkcgaq",
+    "interests": [
+      "mountain",
+      "adventure",
+      "food",
+      "spiritual",
+      "shopping"
+    ],
+    "companionType": "self-group",
+    "backup_id": 1769445449890,
+    "saved_at": "2026-01-26T16:37:29.890Z"
+  },
+  {
+    "userId": "user_1769445462126_r90aa1nej",
+    "interests": [
+      "wellness",
+      "wildlife",
+      "culture",
+      "mountain",
+      "adventure"
+    ],
+    "companionType": "buddy",
+    "backup_id": 1769445462161,
+    "saved_at": "2026-01-26T16:37:42.161Z"
+  },
+  {
+    "userId": "user_1769445469981_vmh6yxh66",
+    "interests": [
+      "mountain",
+      "adventure",
+      "wildlife",
+      "wellness",
+      "culture"
+    ],
+    "companionType": "self-group",
+    "backup_id": 1769445469997,
+    "saved_at": "2026-01-26T16:37:49.997Z"
+  },
+  {
+    "userId": "user_1769445577119_jf8et4nne",
+    "interests": [
+      "beach",
+      "festivals",
+      "spiritual",
+      "food",
+      "adventure"
+    ],
+    "companionType": "buddy",
+    "backup_id": 1769445577144,
+    "saved_at": "2026-01-26T16:39:37.144Z"
+  },
+  {
+    "userId": "user_1769446007250_lqao3qssx",
+    "interests": [
+      "beach",
+      "food",
+      "spiritual",
+      "festivals",
+      "music"
+    ],
+    "companionType": "self-group",
+    "backup_id": 1769446007295,
+    "saved_at": "2026-01-26T16:46:47.295Z"
+  },
+  {
+    "userId": "user_1769446016113_nxasroxge",
+    "interests": [
+      "music",
+      "shopping",
+      "wellness",
+      "wildlife",
+      "culture"
+    ],
+    "companionType": "buddy",
+    "backup_id": 1769446016141,
+    "saved_at": "2026-01-26T16:46:56.141Z"
+  }
+]

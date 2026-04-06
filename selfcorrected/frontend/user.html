@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripConnect - User Profile | Travel India</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --saffron: #FF9933;
+            --white: #FFFFFF;
+            --green: #138808;
+            --blue: #4a6fff;
+            --dark-blue: #2d3a8c;
+            --light-blue: #eef2ff;
+            --gray: #718096;
+            --light-gray: #f5f9ff;
+            --red: #e53e3e;
+            --orange: #ed8936;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, var(--light-blue) 0%, #f0f4ff 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(74, 111, 255, 0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--saffron);
+            font-size: 32px;
+        }
+        
+        .logo h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--dark-blue);
+            font-size: 28px;
+        }
+        
+        .logo span {
+            color: var(--dark-blue);
+        }
+        
+        .india-flag {
+            display: inline-flex;
+            height: 20px;
+            width: 30px;
+            margin-left: 10px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            box-shadow: 0 0 2px rgba(0,0,0,0.2);
+        }
+        
+        .india-flag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 33.33%;
+            background: var(--saffron);
+        }
+        
+        .india-flag::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 33.33%;
+            background: var(--green);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--blue);
+        }
+        
+        .profile-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .profile-card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 100, 0.08);
+            padding: 30px;
+            flex: 1;
+            min-width: 300px;
+            border-top: 5px solid var(--saffron);
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--light-blue);
+            flex-wrap: wrap;
+        }
+        
+        .avatar-container {
+            position: relative;
+        }
+        
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--light-blue);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .avatar-upload {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: var(--blue);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid var(--white);
+        }
+        
+        .avatar-upload:hover {
+            background: var(--dark-blue);
+            transform: scale(1.1);
+        }
+        
+        .profile-info {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .profile-name-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .profile-info h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            color: var(--dark-blue);
+        }
+        
+        .user-id {
+            background: var(--light-blue);
+            color: var(--blue);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .profile-info p {
+            color: var(--gray);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .user-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-inactive {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            min-width: 100px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-value {
+            display: block;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark-blue);
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--light-blue);
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--gray);
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .tab:hover {
+            color: var(--blue);
+        }
+        
+        .tab.active {
+            color: var(--blue);
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--saffron);
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-blue);
+        }
+        
+        .form-group label i {
+            margin-right: 8px;
+            color: var(--blue);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(74, 111, 255, 0.1);
+        }
+        
+        .gender-options {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+        }
+        
+        .gender-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: var(--blue);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 111, 255, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: var(--light-blue);
+            color: var(--blue);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e7ff;
+        }
+        
+        .btn-success {
+            background-color: var(--green);
+            color: white;
+        }
+        
+        .btn-danger {
+            background-color: var(--red);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c53030;
+            transform: translateY(-2px);
+        }
+        
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+        
+        .info-box {
+            background: var(--light-blue);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .info-box h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(74, 111, 255, 0.2);
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #d1d5db;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: var(--dark-blue);
+            min-width: 150px;
+        }
+        
+        .info-value {
+            color: var(--gray);
+            flex: 1;
+        }
+        
+        .activity-log {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 4px solid var(--saffron);
+        }
+        
+        .activity-log h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .activity-item {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .activity-time {
+            font-weight: 600;
+            color: var(--dark-blue);
+            min-width: 150px;
+        }
+        
+        .activity-desc {
+            color: var(--gray);
+            flex: 1;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(74, 111, 255, 0.1);
+            color: var(--gray);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .trip-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--saffron);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .trip-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .trip-card h4 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .trip-details {
+            display: flex;
+            gap: 15px;
+            color: var(--gray);
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .trip-details span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .trip-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        
+        .trip-upcoming {
+            background: #e6f7ff;
+            color: #1890ff;
+        }
+        
+        .trip-completed {
+            background: #f6ffed;
+            color: #52c41a;
+        }
+        
+        .trip-cancelled {
+            background: #fff1f0;
+            color: #f5222d;
+        }
+        
+        .trip-actions {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 100, 0.3);
+            animation: slideIn 0.3s;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-blue);
+        }
+        
+        .modal-title {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-blue);
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--gray);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: var(--red);
+        }
+        
+        .modal-body {
+            margin-bottom: 30px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--white);
+            border-radius: 8px;
+            padding: 15px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 100, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1001;
+            max-width: 400px;
+            transform: translateX(150%);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-left: 4px solid var(--green);
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            border-left-color: var(--green);
+        }
+        
+        .notification.error {
+            border-left-color: var(--red);
+        }
+        
+        .notification.info {
+            border-left-color: var(--blue);
+        }
+        
+        .notification.warning {
+            border-left-color: var(--saffron);
+        }
+        
+        .notification-icon {
+            font-size: 24px;
+        }
+        
+        .notification.success .notification-icon {
+            color: var(--green);
+        }
+        
+        .notification.error .notification-icon {
+            color: var(--red);
+        }
+        
+        .notification.info .notification-icon {
+            color: var(--blue);
+        }
+        
+        .notification.warning .notification-icon {
+            color: var(--saffron);
+        }
+        
+        .notification-message {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--gray);
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+            }
+            
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .stats {
+                justify-content: space-around;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .info-label {
+                min-width: auto;
+            }
+            
+            .trip-actions {
+                position: static;
+                margin-top: 15px;
+                justify-content: flex-start;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-route"></i>
+                <h1>Trip<span>Connect</span> 
+            </div>
+            <nav class="nav-links">
+                <a href="#" id="dashboard-btn"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="#" class="active" id="profile-btn"><i class="fas fa-user"></i> Profile</a>
+                <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="profile-section">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="avatar-container">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Profile Avatar" class="avatar" id="profile-avatar">
+                            <div class="avatar-upload" id="avatar-upload-btn">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <input type="file" id="avatar-input" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="profile-info">
+                            <div class="profile-name-container">
+                                <h2 id="profile-name">Rajesh Kumar</h2>
+                                <span class="user-id">ID: TC-2023-001247</span>
+                            </div>
+                            <p><i class="fas fa-envelope"></i> <span id="profile-email">rajesh.kumar@example.com</span></p>
+                            <p><i class="fas fa-phone"></i> <span id="profile-phone">+91 **********</span></p>
+                            <p><i class="fas fa-map-marker-alt"></i> <span id="profile-location">New Delhi, India</span></p>
+                            <p><i class="fas fa-birthday-cake"></i> <span id="profile-dob">15 March 1990</span> | <i class="fas fa-venus-mars"></i> <span id="profile-gender">Male</span></p>
+                            
+                            <div class="user-status status-active" id="profile-status">
+                                <i class="fas fa-circle"></i> Active
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="tabs">
+                        <button class="tab active" data-tab="personal">Personal Info</button>
+                        <button class="tab" data-tab="trips">My Trips</button>
+                        
+                    </div>
+                    
+                    <div id="personal" class="tab-content active">
+                        <div class="info-box">
+                            <h3><i class="fas fa-info-circle"></i> Profile Information</h3>
+                            <div class="info-row">
+                                <div class="info-label">User ID:</div>
+                                <div class="info-value" id="info-user-id">TC-2023-001247</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Account Created:</div>
+                                <div class="info-value" id="info-created">10 January 2026</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Last Login:</div>
+                                <div class="info-value" id="info-last-login">Today, 10:30 AM</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Account Status:</div>
+                                <div class="info-value"><span class="user-status status-active">Active</span></div>
+                            </div>
+                        </div>
+                        
+                        <form id="profile-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="full-name"><i class="fas fa-user"></i> Full Name</label>
+                                    <input type="text" id="full-name" class="form-control" value="Rajesh Kumar" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                                    <input type="email" id="email" class="form-control" value="rajesh.kumar@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                                    <input type="tel" id="phone" class="form-control" value="+91 **********" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dob"><i class="fas fa-birthday-cake"></i> Date of Birth</label>
+                                    <input type="date" id="dob" class="form-control" value="1990-03-15" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fas fa-venus-mars"></i> Gender</label>
+                                    <div class="gender-options">
+                                        <label class="gender-option">
+                                            <input type="radio" name="gender" value="male" checked> Male
+                                        </label>
+                                        <label class="gender-option">
+                                            <input type="radio" name="gender" value="female"> Female
+                                        </label>
+                                        <label class="gender-option">
+                                            <input type="radio" name="gender" value="other"> Other
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="location"><i class="fas fa-map-marker-alt"></i> Location</label>
+                                    <input type="text" id="location" class="form-control" value="New Delhi, India" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="bio"><i class="fas fa-edit"></i> Bio</label>
+                                <textarea id="bio" class="form-control" rows="4" placeholder="Tell us about yourself...">Adventure enthusiast from India who loves exploring the Himalayas and experiencing diverse cultures. Passionate about photography and trying local cuisines. Always looking for travel buddies to explore hidden gems across India!</textarea>
+                            </div>
+                            <div style="margin-top: 30px;">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Changes
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="cancel-edit">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div id="trips" class="tab-content">
+                        <h3 style="margin-bottom: 20px; color: var(--dark-blue);"><i class="fas fa-suitcase-rolling"></i> My Travel Trips</h3>
+                        
+                        <div class="trip-card" data-trip-id="1">
+                            <div class="trip-actions">
+                                <button class="btn btn-danger btn-small cancel-trip-btn" data-trip-name="Goa Beach Vacation">
+                                    <i class="fas fa-times"></i> Cancel Trip
+                                </button>
+                            </div>
+                            <h4>Goa Beach Vacation</h4>
+                            <div class="trip-details">
+                                <span><i class="far fa-calendar"></i> 15-22 March 2026</span>
+                                <span><i class="fas fa-users"></i> 3 Travelers</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Goa, India</span>
+                            </div>
+                            <p>Relaxing beach vacation with friends, exploring Portuguese heritage and trying seafood.</p>
+                            <span class="trip-status trip-upcoming">Upcoming</span>
+                        </div>
+                        
+                        
+                        <div class="trip-card" data-trip-id="2">
+                            <div class="trip-actions">
+                                <button class="btn btn-secondary btn-small" disabled>
+                                    <i class="fas fa-ban"></i> Completed
+                                </button>
+                            </div>
+                            <h4>Jaipur Cultural Journey</h4>
+                            <div class="trip-details">
+                                <span><i class="far fa-calendar"></i>01-05 January 2026</span>
+                                <span><i class="fas fa-users"></i> Group</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Rajasthan, India</span>
+                            </div>
+                            <p>Exploring forts, palaces, and desert culture of Rajasthan. Looking for travel buddies!</p>
+                            <span class="trip-status trip-upcoming">Completed</span>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 30px;">
+                            <button class="btn btn-primary" id="plan-new-trip-btn">
+                                <i class="fas fa-plus"></i> Plan New Trip
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>TripConnect - Connecting Travelers Across India</p>
+            <div class="copyright">
+                <p>&copy; 2026 TripConnect. All rights reserved. | Made with <i class="fas fa-heart" style="color: #e53e3e;"></i> in India</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal for Trip Cancellation -->
+    <div id="cancel-trip-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-exclamation-triangle" style="color: var(--saffron);"></i> Cancel Trip</h3>
+                <button class="modal-close" id="close-cancel-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="cancel-trip-message">Are you sure you want to cancel this trip?</p>
+                <p style="margin-top: 10px; font-size: 14px; color: var(--red);">
+                    <i class="fas fa-info-circle"></i> Cancellation fees may apply as per our policy.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-trip-no">No, Keep Trip</button>
+                <button class="btn btn-danger" id="cancel-trip-yes">Yes, Cancel Trip</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
+
+    <script>
+        // User Data Model
+        const UserData = {
+            id: "TC-2023-001247",
+            name: "Rajesh Kumar",
+            email: "rajesh.kumar@example.com",
+            phone: "+91 **********",
+            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
+            dob: "1990-03-15",
+            gender: "male",
+            bio: "Adventure enthusiast from India who loves exploring the Himalayas and experiencing diverse cultures. Passionate about photography and trying local cuisines. Always looking for travel buddies to explore hidden gems across India!",
+            location: "New Delhi, India",
+            status: "active",
+            lastLogin: new Date().toISOString(),
+            accountCreated: "2026-01-10",
+           
+        };
+
+        // Application State
+        const TripConnectApp = {
+            currentUser: null,
+            cancelTripData: null,
+            
+            init: function() {
+                this.loadUserData();
+                this.cacheElements();
+                this.bindEvents();
+                this.updateUI();
+                this.showNotification('Welcome back, ' + this.currentUser.name + '!', 'success');
+            },
+            
+            loadUserData: function() {
+                // Try to load from localStorage, otherwise use default
+                const savedData = localStorage.getItem('tripConnectUserData');
+                this.currentUser = savedData ? JSON.parse(savedData) : UserData;
+                
+                // Update last login
+                this.currentUser.lastLogin = new Date().toISOString();
+                this.saveUserData();
+            },
+            
+            saveUserData: function() {
+                localStorage.setItem('tripConnectUserData', JSON.stringify(this.currentUser));
+            },
+            
+            cacheElements: function() {
+                // Profile elements
+                this.elements = {
+                    profileName: document.getElementById('profile-name'),
+                    profileEmail: document.getElementById('profile-email'),
+                    profilePhone: document.getElementById('profile-phone'),
+                    profileLocation: document.getElementById('profile-location'),
+                    profileDob: document.getElementById('profile-dob'),
+                    profileGender: document.getElementById('profile-gender'),
+                    profileStatus: document.getElementById('profile-status'),
+                    profileAvatar: document.getElementById('profile-avatar'),
+                    
+                    
+                    
+                    // Info box
+                    infoUserId: document.getElementById('info-user-id'),
+                    infoCreated: document.getElementById('info-created'),
+                    infoLastLogin: document.getElementById('info-last-login'),
+                    
+                    // Forms
+                    profileForm: document.getElementById('profile-form'),
+                    
+                    // Form fields
+                    fullName: document.getElementById('full-name'),
+                    email: document.getElementById('email'),
+                    phone: document.getElementById('phone'),
+                    dob: document.getElementById('dob'),
+                    location: document.getElementById('location'),
+                    bio: document.getElementById('bio'),
+                    
+                    // Buttons
+                    dashboardBtn: document.getElementById('dashboard-btn'),
+                    profileBtn: document.getElementById('profile-btn'),
+                    logoutBtn: document.getElementById('logout-btn'),
+                    planNewTripBtn: document.getElementById('plan-new-trip-btn'),
+                    cancelTripBtns: document.querySelectorAll('.cancel-trip-btn'),
+                    
+                    // Modal
+                    cancelTripModal: document.getElementById('cancel-trip-modal'),
+                    closeCancelModal: document.getElementById('close-cancel-modal'),
+                    cancelTripNo: document.getElementById('cancel-trip-no'),
+                    cancelTripYes: document.getElementById('cancel-trip-yes'),
+                    cancelTripMessage: document.getElementById('cancel-trip-message')
+                };
+            },
+            
+            bindEvents: function() {
+                // Tab switching
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.addEventListener('click', (e) => this.switchTab(e));
+                });
+                
+                // Profile form submission
+                this.elements.profileForm.addEventListener('submit', (e) => this.saveProfile(e));
+                
+                // Cancel edit button
+                document.getElementById('cancel-edit').addEventListener('click', () => this.cancelEdit());
+                
+                // Avatar upload
+                document.getElementById('avatar-upload-btn').addEventListener('click', () => {
+                    document.getElementById('avatar-input').click();
+                });
+                
+                document.getElementById('avatar-input').addEventListener('change', (e) => this.updateAvatar(e));
+                
+                // Navigation buttons
+                this.elements.dashboardBtn.addEventListener('click', (e) => this.goToDashboard(e));
+                this.elements.profileBtn.addEventListener('click', (e) => this.goToProfile(e));
+                this.elements.logoutBtn.addEventListener('click', (e) => this.logout(e));
+                
+                // Plan new trip button
+                this.elements.planNewTripBtn.addEventListener('click', () => this.planNewTrip());
+                
+                // Cancel trip buttons
+                this.elements.cancelTripBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => this.showCancelTripModal(e));
+                });
+                
+                // Modal events
+                this.elements.closeCancelModal.addEventListener('click', () => this.closeModal());
+                this.elements.cancelTripNo.addEventListener('click', () => this.closeModal());
+                this.elements.cancelTripYes.addEventListener('click', () => this.confirmCancelTrip());
+                
+                // Close modal when clicking outside
+                window.addEventListener('click', (e) => {
+                    if (e.target === this.elements.cancelTripModal) {
+                        this.closeModal();
+                    }
+                });
+            },
+            
+            updateUI: function() {
+                const user = this.currentUser;
+                
+                // Update profile header
+                this.elements.profileName.textContent = user.name;
+                this.elements.profileEmail.textContent = user.email;
+                this.elements.profilePhone.textContent = user.phone;
+                this.elements.profileLocation.textContent = user.location;
+                this.elements.profileDob.textContent = this.formatDate(user.dob);
+                this.elements.profileGender.textContent = this.capitalizeFirstLetter(user.gender);
+                this.elements.profileAvatar.src = user.avatar;
+                
+                // Update status
+                this.updateStatusDisplay();
+                
+                // Update info box
+                this.elements.infoUserId.textContent = user.id;
+                this.elements.infoCreated.textContent = this.formatDate(user.accountCreated);
+                this.elements.infoLastLogin.textContent = this.formatLastLogin(user.lastLogin);
+                
+                // Update form fields
+                this.elements.fullName.value = user.name;
+                this.elements.email.value = user.email;
+                this.elements.phone.value = user.phone;
+                this.elements.dob.value = user.dob;
+                this.elements.location.value = user.location;
+                this.elements.bio.value = user.bio;
+                
+                // Set gender radio
+                document.querySelector(`input[name="gender"][value="${user.gender}"]`).checked = true;
+            },
+            
+            updateStatusDisplay: function() {
+                const status = this.currentUser.status;
+                
+                let statusText, statusClass;
+                
+                if (status === "active") {
+                    statusText = "Active";
+                    statusClass = "status-active";
+                } else if (status === "inactive") {
+                    statusText = "Inactive";
+                    statusClass = "status-inactive";
+                } else {
+                    statusText = "Active";
+                    statusClass = "status-active";
+                }
+                
+                this.elements.profileStatus.className = `user-status ${statusClass}`;
+                this.elements.profileStatus.innerHTML = `<i class="fas fa-circle"></i> ${statusText}`;
+            },
+            
+            formatDate: function(dateString) {
+                const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                return new Date(dateString).toLocaleDateString('en-IN', options);
+            },
+            
+            formatLastLogin: function(dateString) {
+                const now = new Date();
+                const lastLogin = new Date(dateString);
+                const diffMs = now - lastLogin;
+                const diffMins = Math.floor(diffMs / 60000);
+                const diffHours = Math.floor(diffMs / 3600000);
+                
+                if (diffMins < 1) {
+                    return "Just now";
+                } else if (diffMins < 60) {
+                    return `${diffMins} minutes ago`;
+                } else if (diffHours < 24) {
+                    return "Today, " + lastLogin.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+                } else if (diffHours < 48) {
+                    return "Yesterday, " + lastLogin.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+                } else {
+                    return this.formatDate(dateString);
+                }
+            },
+            
+            capitalizeFirstLetter: function(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            },
+            
+            switchTab: function(e) {
+                const targetTab = e.currentTarget.dataset.tab;
+                
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                e.currentTarget.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            },
+            
+            switchToTab: function(tabName) {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                // Add active class to target tab
+                document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+                document.getElementById(tabName).classList.add('active');
+            },
+            
+            saveProfile: function(e) {
+                e.preventDefault();
+                
+                // Update user data
+                this.currentUser.name = this.elements.fullName.value;
+                this.currentUser.email = this.elements.email.value;
+                this.currentUser.phone = this.elements.phone.value;
+                this.currentUser.dob = this.elements.dob.value;
+                this.currentUser.gender = document.querySelector('input[name="gender"]:checked').value;
+                this.currentUser.location = this.elements.location.value;
+                this.currentUser.bio = this.elements.bio.value;
+                
+                // Save to localStorage
+                this.saveUserData();
+                
+                // Update UI
+                this.updateUI();
+                
+                this.showNotification('Profile updated successfully!', 'success');
+            },
+            
+            cancelEdit: function() {
+                // Reset form to current user data
+                this.updateUI();
+                this.showNotification('Changes discarded', 'info');
+            },
+            
+            updateAvatar: function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = (event) => {
+                        this.currentUser.avatar = event.target.result;
+                        this.elements.profileAvatar.src = event.target.result;
+                        this.saveUserData();
+                        this.showNotification('Profile picture updated!', 'success');
+                    };
+                    
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            },
+            
+            goToDashboard: function(e) {
+                e.preventDefault();
+                this.showNotification('Redirecting to Dashboard...', 'info');
+                // In a real app, this would redirect to dashboard page
+                setTimeout(() => {
+                    alert('Dashboard page would load here in a real application.');
+                }, 500);
+            },
+            
+            goToProfile: function(e) {
+                e.preventDefault();
+                // Already on profile page, just switch to personal tab
+                this.switchToTab('personal');
+                this.showNotification('You are on your profile page.', 'info');
+            },
+            
+            logout: function(e) {
+                e.preventDefault();
+                this.showNotification('Logging out...', 'info');
+                setTimeout(() => {
+                    alert('You have been logged out successfully!');
+                    // In a real app, this would redirect to login page
+                }, 1000);
+            },
+            
+            planNewTrip: function() {
+                this.showNotification('Opening trip planner...', 'info');
+                setTimeout(() => {
+                    alert('Trip planner would open here to plan a new trip!');
+                }, 500);
+            },
+            
+            showCancelTripModal: function(e) {
+                e.preventDefault();
+                
+                // Check if button is disabled (completed trips)
+                if (e.target.disabled) {
+                    this.showNotification('Cannot cancel completed trips.', 'error');
+                    return;
+                }
+                
+                const tripName = e.target.getAttribute('data-trip-name');
+                const tripCard = e.target.closest('.trip-card');
+                const tripId = tripCard.getAttribute('data-trip-id');
+                
+                // Store trip data for cancellation
+                this.cancelTripData = {
+                    tripName: tripName,
+                    tripId: tripId,
+                    tripCard: tripCard
+                };
+                
+                // Update modal message
+                this.elements.cancelTripMessage.textContent = `Are you sure you want to cancel "${tripName}"?`;
+                
+                // Show modal
+                this.elements.cancelTripModal.style.display = 'flex';
+            },
+            
+            closeModal: function() {
+                this.elements.cancelTripModal.style.display = 'none';
+                this.cancelTripData = null;
+            },
+            
+            confirmCancelTrip: function() {
+                if (!this.cancelTripData) return;
+                
+                const { tripName, tripId, tripCard } = this.cancelTripData;
+                
+                // Update trip status in UI
+                const statusElement = tripCard.querySelector('.trip-status');
+                statusElement.textContent = 'Cancelled';
+                statusElement.className = 'trip-status trip-cancelled';
+                
+                // Disable the cancel button
+                const cancelBtn = tripCard.querySelector('.cancel-trip-btn');
+                cancelBtn.disabled = true;
+                cancelBtn.innerHTML = '<i class="fas fa-ban"></i> Cancelled';
+                cancelBtn.classList.remove('btn-danger');
+                cancelBtn.classList.add('btn-secondary');
+                
+                // Close modal
+                this.closeModal();
+                
+                // Show success notification
+                this.showNotification(`Trip "${tripName}" has been cancelled successfully.`, 'success');
+                
+                // Log the cancellation
+                console.log(`Trip ${tripId} (${tripName}) cancelled by user.`);
+            },
+            
+            showNotification: function(message, type = 'info') {
+                const notificationContainer = document.getElementById('notification-container');
+                
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                
+                // Set icon based on type
+                let icon = 'info-circle';
+                if (type === 'success') icon = 'check-circle';
+                if (type === 'error') icon = 'exclamation-circle';
+                if (type === 'warning') icon = 'exclamation-triangle';
+                
+                notification.innerHTML = `
+                    <div class="notification-icon">
+                        <i class="fas fa-${icon}"></i>
+                    </div>
+                    <div class="notification-message">${message}</div>
+                    <button class="notification-close">&times;</button>
+                `;
+                
+                // Add to container
+                notificationContainer.appendChild(notification);
+                
+                // Show notification
+                setTimeout(() => {
+                    notification.classList.add('show');
+                }, 10);
+                
+                // Auto remove after 5 seconds
+                const autoRemove = setTimeout(() => {
+                    this.removeNotification(notification);
+                }, 5000);
+                
+                // Close button event
+                const closeBtn = notification.querySelector('.notification-close');
+                closeBtn.addEventListener('click', () => {
+                    clearTimeout(autoRemove);
+                    this.removeNotification(notification);
+                });
+            },
+            
+            removeNotification: function(notification) {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }
+        };
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            TripConnectApp.init();
+        });
+    </script>
+</body>
+</html>
